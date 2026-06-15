@@ -36,15 +36,13 @@
 
     <script>
         window.onload = function() {
-            // The unpkg library exposes the 'V86Starter' constructor
-            var emulator = new V86Starter({
-                // Loaded from open CORS servers
+            // FIXED: Changed V86Starter to V86 to match the unpkg library export global
+            var emulator = new V86({
                 wasm_path: "https://unpkg.com/v86/build/v86.wasm", 
                 memory_size: 512 * 1024 * 1024, 
                 vga_as_hd: true,
                 
-                // Let's use a tiny, known CORS-safe Linux image first just to prove it boots!
-                // Once you see this load text, we can swap it back to your Android ISO.
+                // Using the tiny test Linux image to bypass initial download lag and verify the engine works
                 cdrom: { url: "https://unpkg.com/v86/images/linux.iso" }, 
                 
                 screen_container: document.getElementById("screen_container"),
