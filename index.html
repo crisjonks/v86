@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Web Android Emulator</title>
-    <script src="https://unpkg.com/v86@0.5.372/build/libv86.js"></script>
+    <script src="https://fastly.jsdelivr.net/npm/v86@0.5.12/build/libv86.js"></script>
     <style>
         body {
             background-color: #f0f0f0;
@@ -36,19 +36,19 @@
 
     <script>
         window.onload = function() {
-            // This specific version script exposes the classic global 'V86' object
-            var emulator = new V86({
-                wasm_path: "https://unpkg.com/v86@0.5.372/build/v86.wasm", 
+            // This specific stable release utilizes the global V86Starter constructor
+            var emulator = new V86Starter({
+                wasm_path: "https://fastly.jsdelivr.net/npm/v86@0.5.12/build/v86.wasm", 
                 memory_size: 512 * 1024 * 1024, 
                 vga_as_hd: true,
                 
-                // Keep the tiny test linux.iso pinned too so we can see it fire up instantly!
-                cdrom: { url: "https://unpkg.com/v86@0.5.372/images/linux.iso" }, 
+                // Testing with the stable, direct tiny Linux ISO mirror
+                cdrom: { url: "https://fastly.jsdelivr.net/npm/v86@0.5.12/images/linux.iso" }, 
                 
                 screen_container: document.getElementById("screen_container"),
                 
-                bios: { url: "https://unpkg.com/v86@0.5.372/bios/seabios.bin" },
-                vga_bios: { url: "https://unpkg.com/v86@0.5.372/bios/vgabios.bin" },
+                bios: { url: "https://fastly.jsdelivr.net/npm/v86@0.5.12/bios/seabios.bin" },
+                vga_bios: { url: "https://fastly.jsdelivr.net/npm/v86@0.5.12/bios/vgabios.bin" },
                 autostart: true,
             });
         };
