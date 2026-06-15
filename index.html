@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Web Android Emulator</title>
-    <script src="https://copy.sh/v86/build/libv86.js"></script>
+    <script src="https://unpkg.com/v86/build/libv86.js"></script>
     <style>
         body {
             background-color: #f0f0f0;
@@ -30,28 +30,30 @@
 <body>
 
     <h2 style="text-align: center;">My Browser Android Emulator</h2>
-    <p style="text-align: center; color: #666;">Loading Android 4.4... Please wait a few moments for the bootloader screen.</p>
+    <p style="text-align: center; color: #666;">Loading Emulator Engine... Please wait a moment.</p>
     
     <div id="screen_container"></div>
 
     <script>
-    window.onload = function() {
-        // Changed V86Starter to V86 to match the library global variable
-        var emulator = new V86({
-            wasm_path: "https://copy.sh/v86/build/v86.wasm", 
-            memory_size: 512 * 1024 * 1024, 
-            vga_as_hd: true,
-            
-            // Your live GitHub Release ISO file link
-            cdrom: { url: "https://github.com/crisjonks/v86/releases/download/Android/android-x86-4.4-r2.iso" }, 
-            
-            screen_container: document.getElementById("screen_container"),
-            
-            bios: { url: "https://copy.sh/v86/bios/seabios.bin" },
-            vga_bios: { url: "https://copy.sh/v86/bios/vgabios.bin" },
-            autostart: true,
-        });
-    };
-</script>
+        window.onload = function() {
+            // The unpkg library exposes the 'V86Starter' constructor
+            var emulator = new V86Starter({
+                // Loaded from open CORS servers
+                wasm_path: "https://unpkg.com/v86/build/v86.wasm", 
+                memory_size: 512 * 1024 * 1024, 
+                vga_as_hd: true,
+                
+                // Let's use a tiny, known CORS-safe Linux image first just to prove it boots!
+                // Once you see this load text, we can swap it back to your Android ISO.
+                cdrom: { url: "https://unpkg.com/v86/images/linux.iso" }, 
+                
+                screen_container: document.getElementById("screen_container"),
+                
+                bios: { url: "https://unpkg.com/v86/bios/seabios.bin" },
+                vga_bios: { url: "https://unpkg.com/v86/bios/vgabios.bin" },
+                autostart: true,
+            });
+        };
+    </script>
 </body>
 </html>
