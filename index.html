@@ -1,20 +1,39 @@
 <!doctype html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <title>Web Android Emulator</title>
     <script src="build/libv86.js"></script>
+    <style>
+        
+        #screen_container {
+            width: 800px;
+            height: 600px;
+            background-color: black;
+            margin: 20px auto;
+        }
+        #screen_container canvas {
+            display: block; 
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-    <div id="screen_container">
-        <canvas style="display: none"></canvas>
-    </div>
+
+    <h2 style="text-align: center;">My Browser Android Emulator</h2>
+    
+    <div id="screen_container"></div>
 
     <script>
         window.onload = function() {
             var emulator = new V86Starter({
                 wasm_path: "build/v86.wasm",
-                memory_size: 512 * 1024 * 1024, // Allocate 512MB RAM
+                memory_size: 512 * 1024 * 1024, 
                 vga_as_hd: true,
-                cdrom: { url: "images/android-x86-4.4.iso" }, 
+                
+                cdrom: { url: "https://github.com/crisjonks/v86/releases/download/Android/android-x86-4.4-r2.iso" }, 
+                
                 screen_container: document.getElementById("screen_container"),
                 bios: { url: "bios/seabios.bin" },
                 vga_bios: { url: "bios/vgabios.bin" },
