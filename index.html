@@ -35,25 +35,23 @@
     <div id="screen_container"></div>
 
     <script>
-        window.onload = function() {
-            // Using V86Starter constructor provided by the libv86 script
-            var emulator = new V86Starter({
-                // Grab the WebAssembly binary execution files online
-                wasm_path: "https://copy.sh/v86/build/v86.wasm", 
-                memory_size: 512 * 1024 * 1024, // 512MB RAM allocation
-                vga_as_hd: true,
-                
-                // Your live GitHub Release ISO file link
-                cdrom: { url: "https://github.com/crisjonks/v86/releases/download/Android/android-x86-4.4-r2.iso" }, 
-                
-                screen_container: document.getElementById("screen_container"),
-                
-                // Official online BIOS paths so you don't have to compile them
-                bios: { url: "https://copy.sh/v86/bios/seabios.bin" },
-                vga_bios: { url: "https://copy.sh/v86/bios/vgabios.bin" },
-                autostart: true,
-            });
-        };
-    </script>
+    window.onload = function() {
+        // Changed V86Starter to V86 to match the library global variable
+        var emulator = new V86({
+            wasm_path: "https://copy.sh/v86/build/v86.wasm", 
+            memory_size: 512 * 1024 * 1024, 
+            vga_as_hd: true,
+            
+            // Your live GitHub Release ISO file link
+            cdrom: { url: "https://github.com/crisjonks/v86/releases/download/Android/android-x86-4.4-r2.iso" }, 
+            
+            screen_container: document.getElementById("screen_container"),
+            
+            bios: { url: "https://copy.sh/v86/bios/seabios.bin" },
+            vga_bios: { url: "https://copy.sh/v86/bios/vgabios.bin" },
+            autostart: true,
+        });
+    };
+</script>
 </body>
 </html>
