@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Web Android Emulator</title>
-    <script src="https://unpkg.com/v86/build/libv86.js"></script>
+    <script src="https://unpkg.com/v86@0.5.372/build/libv86.js"></script>
     <style>
         body {
             background-color: #f0f0f0;
@@ -30,25 +30,25 @@
 <body>
 
     <h2 style="text-align: center;">My Browser Android Emulator</h2>
-    <p style="text-align: center; color: #666;">Loading Emulator Engine... Please wait a moment.</p>
+    <p style="text-align: center; color: #666;">Booting system... Please wait.</p>
     
     <div id="screen_container"></div>
 
     <script>
         window.onload = function() {
-            // FIXED: Changed V86Starter to V86 to match the unpkg library export global
+            // This specific version script exposes the classic global 'V86' object
             var emulator = new V86({
-                wasm_path: "https://unpkg.com/v86/build/v86.wasm", 
+                wasm_path: "https://unpkg.com/v86@0.5.372/build/v86.wasm", 
                 memory_size: 512 * 1024 * 1024, 
                 vga_as_hd: true,
                 
-                // Using the tiny test Linux image to bypass initial download lag and verify the engine works
-                cdrom: { url: "https://unpkg.com/v86/images/linux.iso" }, 
+                // Keep the tiny test linux.iso pinned too so we can see it fire up instantly!
+                cdrom: { url: "https://unpkg.com/v86@0.5.372/images/linux.iso" }, 
                 
                 screen_container: document.getElementById("screen_container"),
                 
-                bios: { url: "https://unpkg.com/v86/bios/seabios.bin" },
-                vga_bios: { url: "https://unpkg.com/v86/bios/vgabios.bin" },
+                bios: { url: "https://unpkg.com/v86@0.5.372/bios/seabios.bin" },
+                vga_bios: { url: "https://unpkg.com/v86@0.5.372/bios/vgabios.bin" },
                 autostart: true,
             });
         };
